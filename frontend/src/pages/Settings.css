@@ -1,0 +1,22 @@
+.settings-page{display:flex;flex-direction:column;gap:20px;max-width:800px;margin:0 auto;width:100%}
+.profile-card{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.profile-avatar{width:56px;height:56px;border-radius:50%;background:var(--green);color:var(--bg-deep);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;font-family:var(--font-sans);flex-shrink:0}
+.profile-info{flex:1;min-width:180px}
+.profile-name{font-family:var(--font-sans);font-size:22px;font-weight:700;color:var(--text-bright);margin:0}
+.profile-email{font-size:13px;color:var(--text-dim);margin:2px 0 0}
+.profile-joined{font-size:12px;color:var(--text-dim);margin:2px 0 0}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.stat-card{display:flex;flex-direction:column;align-items:center;gap:4px;padding:20px 12px;text-align:center}
+.stat-card-val{font-size:30px;font-weight:700;color:var(--text-bright);font-variant-numeric:tabular-nums}
+.stat-card.highlight .stat-card-val{color:var(--green);text-shadow:0 0 10px var(--green-dim)}
+.stat-card-label{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim)}
+.history-section{padding:24px}
+.history-title{font-family:var(--font-sans);font-size:18px;font-weight:600;color:var(--text-bright);margin:0 0 16px}
+.history-empty{font-size:14px;color:var(--text-dim);text-align:center;padding:20px}
+.history-table-wrap{overflow-x:auto}
+.history-table{width:100%;border-collapse:collapse;font-size:13px}
+.history-table th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);padding:10px 12px;border-bottom:1px solid var(--border)}
+.history-table td{padding:10px 12px;border-bottom:1px solid #1e1e2a;color:var(--text)}
+.history-table tr:hover td{background:var(--bg-hover)}
+.td-wpm{color:var(--green);font-weight:600}
+@media(max-width:640px){.stats-grid{grid-template-columns:repeat(2,1fr)}.profile-card{flex-direction:column;text-align:center}}

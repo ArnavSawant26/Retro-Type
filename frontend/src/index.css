@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+/* ── CSS Reset & Variables ───────────────────────── */
+
+:root {
+  --bg-deep:      #0a0a0f;
+  --bg-surface:   #12121a;
+  --bg-card:      #1a1a26;
+  --bg-hover:     #222233;
+
+  --green:        #39ff14;
+  --green-dim:    #39ff1480;
+  --green-glow:   0 0 10px #39ff1444, 0 0 40px #39ff1411;
+
+  --amber:        #ffb627;
+  --amber-dim:    #ffb62780;
+
+  --red:          #ff3547;
+  --red-dim:      #ff354780;
+
+  --cyan:         #00e5ff;
+  --cyan-dim:     #00e5ff60;
+
+  --text:         #b0b0c0;
+  --text-bright:  #e0e0f0;
+  --text-dim:     #606078;
+
+  --border:       #2a2a3a;
+  --border-glow:  #39ff1422;
+
+  --font-mono:    'JetBrains Mono', 'Consolas', monospace;
+  --font-sans:    'Space Grotesk', system-ui, sans-serif;
+
+  --radius:       8px;
+  --radius-lg:    14px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  background: var(--bg-deep);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  border: none;
+  text-align: left;
+}
+
+a {
+  color: var(--green);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover {
+  color: var(--cyan);
+}
+
+/* ── App Shell ──────────────────────────────────── */
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 24px 40px;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ── Shared Button Styles ───────────────────────── */
+
+.btn {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 10px 24px;
+  border-radius: var(--radius);
+  border: 1px solid var(--green-dim);
+  background: transparent;
+  color: var(--green);
+  cursor: pointer;
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:hover {
+  background: #39ff1412;
+  box-shadow: var(--green-glow);
+  border-color: var(--green);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: var(--green);
+  color: var(--bg-deep);
+  border-color: var(--green);
+}
+
+.btn-primary:hover {
+  background: #39ff14dd;
+  box-shadow: 0 0 20px #39ff1444;
+}
+
+.btn-danger {
+  border-color: var(--red-dim);
+  color: var(--red);
+}
+.btn-danger:hover {
+  background: #ff354712;
+  border-color: var(--red);
+  box-shadow: 0 0 10px #ff354722;
+}
+
+/* ── Shared Card Style ──────────────────────────── */
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+}
+
+/* ── Scrollbar ─────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--green-dim);
+}
+
+/* ── Selection ─────────────────────────────────── */
+
+::selection {
+  background: var(--green-dim);
+  color: var(--bg-deep);
+}
+
+/* ── Animations ────────────────────────────────── */
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 5px var(--green-dim); }
+  50%      { box-shadow: 0 0 20px var(--green-dim), 0 0 40px #39ff1411; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-out both;
+}
