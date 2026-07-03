@@ -19,11 +19,11 @@
 .rt-words{display:flex;flex-wrap:wrap;gap:10px;line-height:2.2}
 .rt-word{position:relative}
 .rt-word.typed{opacity:.4}
-.rt-letter{font-size:20px;color:var(--text-dim);transition:color .1s}
+.rt-letter{position:relative;font-size:20px;color:var(--text-dim);transition:color .1s}
 .rt-letter.correct{color:var(--text-bright)}
 .rt-letter.wrong{color:var(--red);text-decoration:underline;text-decoration-color:var(--red-dim)}
 .rt-letter.extra{color:var(--red);opacity:.7}
-.rt-letter.cursor{border-left:2px solid var(--green);animation:blink .8s step-end infinite;margin-left:-1px;padding-left:1px}
+.rt-letter.cursor::before{content:"";position:absolute;left:0;top:0.1em;bottom:0.1em;border-left:2px solid var(--green);animation:blink .8s step-end infinite;pointer-events:none}
 .rt-footer{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;border-top:1px solid var(--border)}
 .rt-hint{font-size:12px;color:var(--text-dim);letter-spacing:.5px}
 .rt-overlay{position:absolute;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;background:rgba(10,10,15,.92);backdrop-filter:blur(12px)}

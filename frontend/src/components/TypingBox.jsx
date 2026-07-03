@@ -207,15 +207,6 @@ const TypingBox = () => {
                     </span>
                   ))}
 
-                {/* Cursor at end */}
-                {wIndex === currentWord &&
-                  currentLetter >= word.length &&
-                  extraLetters.length === 0 &&
-                  !done && (
-                    <span className="rt-letter cursor" style={{ opacity: 0.5 }}>
-                      _
-                    </span>
-                  )}
               </span>
             ))}
           </div>
