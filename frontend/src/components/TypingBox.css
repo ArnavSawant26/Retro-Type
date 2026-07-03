@@ -7,7 +7,7 @@
 .mode-pill.active{color:var(--green);background:#39ff1412;border-color:var(--green-dim)}
 .mode-divider{width:1px;height:24px;background:var(--border)}
 .rt-root{width:100%}
-.rt-crt{position:relative;background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.03)}
+.rt-crt{position:relative;display:flex;flex-direction:column;height:clamp(500px,calc(100vh - 202px),680px);background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.03)}
 .rt-scanlines{position:absolute;inset:0;pointer-events:none;z-index:10;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.06) 2px,rgba(0,0,0,.06) 4px)}
 .rt-header{display:flex;align-items:center;justify-content:center;padding:16px 24px;border-bottom:1px solid var(--border)}
 .rt-stats{display:flex;gap:32px}
@@ -15,10 +15,11 @@
 .rt-stat-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim)}
 .rt-stat-val{font-size:22px;font-weight:700;color:var(--green);text-shadow:0 0 8px var(--green-dim);font-variant-numeric:tabular-nums}
 .rt-stat-val.danger{color:var(--red);text-shadow:0 0 8px var(--red-dim)}
-.rt-terminal{padding:28px 32px;max-height:220px;overflow-y:auto;position:relative}
+.rt-terminal{flex:1;min-height:0;padding:28px 32px;overflow-y:auto;position:relative}
 .rt-words{display:flex;flex-wrap:wrap;gap:10px;line-height:2.2}
 .rt-word{position:relative}
-.rt-word.typed{opacity:.4}
+.rt-word.typed .rt-letter.correct{color:var(--text-bright)}
+.rt-word.typed .rt-letter.wrong,.rt-word.typed .rt-letter.extra{color:var(--red);opacity:1}
 .rt-letter{position:relative;font-size:20px;color:var(--text-dim);transition:color .1s}
 .rt-letter.correct{color:var(--text-bright)}
 .rt-letter.wrong{color:var(--red);text-decoration:underline;text-decoration-color:var(--red-dim)}
@@ -26,8 +27,8 @@
 .rt-letter.cursor::before{content:"";position:absolute;left:0;top:0.1em;bottom:0.1em;border-left:2px solid var(--green);animation:blink .8s step-end infinite;pointer-events:none}
 .rt-footer{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;border-top:1px solid var(--border)}
 .rt-hint{font-size:12px;color:var(--text-dim);letter-spacing:.5px}
-.rt-overlay{position:absolute;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;background:rgba(10,10,15,.92);backdrop-filter:blur(12px)}
-.rt-overlay-inner{display:flex;flex-direction:column;align-items:center;gap:24px;padding:40px;max-width:480px;width:100%}
+.rt-overlay{position:absolute;inset:0;z-index:20;display:flex;align-items:flex-start;justify-content:center;padding:24px;overflow-y:auto;background:rgba(10,10,15,.92);backdrop-filter:blur(12px)}
+.rt-overlay-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;margin:auto;padding:16px;max-width:480px;min-height:100%;width:100%}
 .rt-overlay-title{font-family:var(--font-sans);font-size:28px;font-weight:700;letter-spacing:4px;color:var(--green);text-shadow:0 0 20px var(--green-dim)}
 .rt-overlay-stats{display:flex;gap:36px}
 .rt-overlay-stat{display:flex;flex-direction:column;align-items:center;gap:4px}
@@ -37,4 +38,4 @@
 .rt-login-nudge{font-size:13px;color:var(--amber);text-align:center}
 .rt-login-nudge a{color:var(--green);text-decoration:underline}
 .rt-saved-msg{font-size:13px;color:var(--green)}
-@media(max-width:640px){.rt-modes{gap:10px;padding:12px 14px}.mode-divider{display:none}.rt-terminal{padding:20px 16px}.rt-letter{font-size:17px}.rt-stats{gap:20px}.rt-overlay-stats{gap:20px}.rt-overlay-stat .stat-number{font-size:28px}.rt-overlay-stat.highlight .stat-number{font-size:34px}}
+@media(max-width:640px){.rt-modes{gap:10px;padding:12px 14px}.mode-divider{display:none}.rt-crt{height:clamp(500px,calc(100vh - 174px),620px)}.rt-terminal{padding:20px 16px}.rt-letter{font-size:17px}.rt-stats{gap:20px}.rt-overlay{padding:16px}.rt-overlay-inner{gap:18px;padding:8px}.rt-overlay-stats{gap:20px}.rt-overlay-stat .stat-number{font-size:28px}.rt-overlay-stat.highlight .stat-number{font-size:34px}}

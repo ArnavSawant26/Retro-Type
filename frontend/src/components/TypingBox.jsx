@@ -21,6 +21,7 @@ const TypingBox = () => {
     currentLetter,
     letterState,
     extraLetters,
+    extraLetterState,
     handleKey,
     wpm,
     acc,
@@ -200,12 +201,13 @@ const TypingBox = () => {
                 })}
 
                 {/* Extra letters */}
-                {wIndex === currentWord &&
-                  extraLetters.map((el, i) => (
+                {(wIndex === currentWord ? extraLetters : extraLetterState[wIndex] || []).map(
+                  (el, i) => (
                     <span key={`extra-${i}`} className="rt-letter extra">
                       {el}
                     </span>
-                  ))}
+                  )
+                )}
 
               </span>
             ))}

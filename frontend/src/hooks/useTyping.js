@@ -16,6 +16,7 @@ export const useTyping = () => {
   const [currentLetter, setCurrentLetter] = useState(0);
   const [letterState, setLetterState] = useState([]);
   const [extraLetters, setExtraLetters] = useState([]);
+  const [extraLetterState, setExtraLetterState] = useState([]);
   const [startTime, setStartTime] = useState(null);
   const [done, setDone] = useState(false);
   const [wpmHistory, setWpmHistory] = useState([]);
@@ -52,6 +53,7 @@ export const useTyping = () => {
     setCurrentWord(0);
     setCurrentLetter(0);
     setExtraLetters([]);
+    setExtraLetterState(Array.from({ length: newWords.length }, () => []));
     setStartTime(null);
     setDone(false);
     setStats({ correctWords: 0, totalTyped: 0, correctTyped: 0 });
@@ -144,6 +146,11 @@ export const useTyping = () => {
           setDone(true);
         }
 
+        setExtraLetterState((prev) => {
+          const copy = [...prev];
+          copy[currentWord] = [...extraLetters];
+          return copy;
+        });
         setCurrentWord((w) => w + 1);
         setCurrentLetter(0);
         setExtraLetters([]);
@@ -216,6 +223,7 @@ export const useTyping = () => {
     currentLetter,
     letterState,
     extraLetters,
+    extraLetterState,
     handleKey,
     reset,
     wpm,
