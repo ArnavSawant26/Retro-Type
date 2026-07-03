@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 /* ── CSS Reset & Variables ───────────────────────── */
 
@@ -33,6 +33,58 @@
 
   --radius:       8px;
   --radius-lg:    14px;
+  color-scheme: dark;
+}
+
+:root[data-theme="amber"] {
+  --green: #ffb627;
+  --green-dim: #ffb62780;
+  --green-glow: 0 0 10px #ffb62744, 0 0 40px #ffb62711;
+  --cyan: #ffe09a;
+  --cyan-dim: #ffe09a60;
+}
+
+:root[data-theme="blue"] {
+  --green: #00b7ff;
+  --green-dim: #00b7ff80;
+  --green-glow: 0 0 10px #00b7ff44, 0 0 40px #00b7ff11;
+  --cyan: #7de3ff;
+  --cyan-dim: #7de3ff60;
+}
+
+:root[data-theme="dark"] {
+  --bg-deep: #090b10;
+  --bg-surface: #11141b;
+  --bg-card: #181c25;
+  --bg-hover: #232936;
+  --green: #b8c0cc;
+  --green-dim: #b8c0cc70;
+  --green-glow: 0 0 10px #b8c0cc22;
+  --cyan: #dfe6ef;
+  --cyan-dim: #dfe6ef50;
+  --border: #2d3442;
+}
+
+:root[data-theme="light"] {
+  --bg-deep: #eceff3;
+  --bg-surface: #ffffff;
+  --bg-card: #f7f8fa;
+  --bg-hover: #e7ebf0;
+  --green: #087f23;
+  --green-dim: #087f2370;
+  --green-glow: 0 0 10px #087f2322;
+  --amber: #9a6300;
+  --amber-dim: #9a630070;
+  --red: #c51f32;
+  --red-dim: #c51f3270;
+  --cyan: #006f91;
+  --cyan-dim: #006f9150;
+  --text: #4d5664;
+  --text-bright: #171b22;
+  --text-dim: #737d8c;
+  --border: #cfd5dd;
+  --border-glow: #087f2320;
+  color-scheme: light;
 }
 
 *, *::before, *::after {
@@ -109,7 +161,7 @@ a:hover {
 }
 
 .btn:hover {
-  background: #39ff1412;
+  background: color-mix(in srgb, var(--green) 8%, transparent);
   box-shadow: var(--green-glow);
   border-color: var(--green);
 }
@@ -125,8 +177,8 @@ a:hover {
 }
 
 .btn-primary:hover {
-  background: #39ff14dd;
-  box-shadow: 0 0 20px #39ff1444;
+  background: color-mix(in srgb, var(--green) 87%, transparent);
+  box-shadow: 0 0 20px var(--green-dim);
 }
 
 .btn-danger {

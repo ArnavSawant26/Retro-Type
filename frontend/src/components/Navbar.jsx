@@ -35,6 +35,14 @@ const Navbar = () => {
 
         {/* Auth */}
         <div className="nav-auth">
+          <NavLink
+            to="/settings"
+            className={({ isActive }) => `nav-settings-button ${isActive ? "active" : ""}`}
+            aria-label="Appearance settings"
+          >
+            <span aria-hidden="true">⚙</span>
+            <span className="nav-settings-label">Settings</span>
+          </NavLink>
           {user ? (
             <>
               <NavLink to="/settings" className={({ isActive }) => `nav-link nav-user ${isActive ? "active" : ""}`}>

@@ -1,18 +1,48 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { useAppearance } from "../context/appearanceState";
 import { getMyResults } from "../services/api";
 import "./Settings.css";
 
+const THEMES = [
+  { value: "retro-green", label: "Retro Green CRT", color: "#39ff14" },
+  { value: "amber", label: "Amber CRT", color: "#ffb627" },
+  { value: "blue", label: "Blue Terminal", color: "#00b7ff" },
+  { value: "dark", label: "Dark", color: "#b8c0cc" },
+  { value: "light", label: "Light", color: "#087f23" },
+];
+
+const FONTS = [
+  { value: "jetbrains", label: "JetBrains Mono" },
+  { value: "fira", label: "Fira Code" },
+  { value: "cascadia", label: "Cascadia Code" },
+  { value: "ibm", label: "IBM Plex Mono" },
+];
+
+const CURSORS = [
+  { value: "block", label: "Block" },
+  { value: "line", label: "Line" },
+  { value: "underline", label: "Underline" },
+];
+
+const EFFECTS = [
+  { value: "scanlines", label: "Scanlines" },
+  { value: "flicker", label: "Screen Flicker" },
+  { value: "glow", label: "Glow" },
+  { value: "noise", label: "Noise" },
+  { value: "vignette", label: "Vignette" },
+];
+
 const Settings = () => {
   const { user, logout } = useAuth();
+  const { appearance, updateAppearance, updateEffect, resetAppearance } = useAppearance();
   const navigate = useNavigate();
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!user) {
-      navigate("/login");
       return;
     }
     getMyResults()
@@ -20,8 +50,6 @@ const Settings = () => {
       .catch(() => {})
       .finally(() => setLoading(false));
   }, [user, navigate]);
-
-  if (!user) return null;
 
   const bestWpm = results.length ? Math.max(...results.map((r) => r.wpm)) : 0;
   const avgWpm = results.length
@@ -38,6 +66,113 @@ const Settings = () => {
 
   return (
     <div className="settings-page fade-in">
+      <section className="appearance-card card">
+        <div className="settings-heading-row">
+          <div>
+            <span className="settings-kicker">Appearance</span>
+            <h1 className="settings-heading">Terminal display</h1>
+            <p className="settings-description">Changes apply instantly and are saved on this device.</p>
+          </div>
+          <button className="settings-reset" type="button" onClick={resetAppearance}>Reset to defaults</button>
+        </div>
+
+        <div className="appearance-section">
+          <div className="appearance-label">Theme</div>
+          <div className="theme-grid">
+            {THEMES.map((theme) => (
+              <button
+                type="button"
+                key={theme.value}
+                className={`theme-option ${appearance.theme === theme.value ? "active" : ""}`}
+                onClick={() => updateAppearance("theme", theme.value)}
+                aria-pressed={appearance.theme === theme.value}
+              >
+                <span className="theme-swatch" style={{ "--swatch": theme.color }} />
+                {theme.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="appearance-grid">
+          <label className="appearance-field">
+            <span className="appearance-label">Font</span>
+            <select
+              value={appearance.font}
+              onChange={(event) => updateAppearance("font", event.target.value)}
+            >
+              {FONTS.map((font) => <option key={font.value} value={font.value}>{font.label}</option>)}
+            </select>
+          </label>
+
+          <div className="appearance-field">
+            <div className="range-heading">
+              <span className="appearance-label">Font Size</span>
+              <output>{appearance.fontSize}px</output>
+            </div>
+            <input
+              type="range"
+              min="12"
+              max="28"
+              value={appearance.fontSize}
+              onChange={(event) => updateAppearance("fontSize", Number(event.target.value))}
+              aria-label="Typing font size"
+            />
+            <div className="range-limits"><span>12px</span><span>28px</span></div>
+          </div>
+        </div>
+
+        <div className="appearance-section">
+          <div className="appearance-label">Cursor Style</div>
+          <div className="segmented-control">
+            {CURSORS.map((cursor) => (
+              <button
+                type="button"
+                key={cursor.value}
+                className={appearance.cursorStyle === cursor.value ? "active" : ""}
+                onClick={() => updateAppearance("cursorStyle", cursor.value)}
+                aria-pressed={appearance.cursorStyle === cursor.value}
+              >
+                {cursor.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="toggle-row single-toggle">
+          <div><span className="toggle-title">Cursor Blink</span><span className="toggle-copy">Animate the typing cursor</span></div>
+          <button
+            type="button"
+            className={`switch ${appearance.cursorBlink ? "on" : ""}`}
+            onClick={() => updateAppearance("cursorBlink", !appearance.cursorBlink)}
+            role="switch"
+            aria-checked={appearance.cursorBlink}
+            aria-label="Cursor blink"
+          ><span /></button>
+        </div>
+
+        <div className="appearance-section effects-section">
+          <div className="appearance-label">CRT Effects</div>
+          <div className="effects-grid">
+            {EFFECTS.map((effect) => (
+              <div className="toggle-row" key={effect.value}>
+                <span className="toggle-title">{effect.label}</span>
+                <button
+                  type="button"
+                  className={`switch ${appearance.effects[effect.value] ? "on" : ""}`}
+                  onClick={() => updateEffect(effect.value, !appearance.effects[effect.value])}
+                  role="switch"
+                  aria-checked={appearance.effects[effect.value]}
+                  aria-label={effect.label}
+                ><span /></button>
+              </div>
+            ))}
+          </div>
+          <p className="performance-note">Disable CRT effects for better performance on lower-powered devices.</p>
+        </div>
+      </section>
+
+      {user && <>
       {/* Profile Card */}
       <div className="profile-card card">
         <div className="profile-avatar">{user.username[0].toUpperCase()}</div>
@@ -105,6 +240,7 @@ const Settings = () => {
           </div>
         )}
       </div>
+      </>}
     </div>
   );
 };

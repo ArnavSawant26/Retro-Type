@@ -71,7 +71,7 @@
 
 .nav-link.active {
   color: var(--green);
-  background: #39ff1410;
+  background: color-mix(in srgb, var(--green) 7%, transparent);
 }
 
 /* Auth area */
@@ -80,6 +80,9 @@
   align-items: center;
   gap: 12px;
 }
+
+.nav-settings-button{display:flex;align-items:center;gap:7px;padding:8px 11px;border:1px solid transparent;border-radius:var(--radius);color:var(--text);font-size:13px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;transition:.2s}
+.nav-settings-button:hover,.nav-settings-button.active{border-color:var(--border);background:var(--bg-hover);color:var(--green)}
 
 .nav-user {
   display: flex;
@@ -102,7 +105,7 @@
 
 .nav-logout {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.5px;
   text-transform: uppercase;
@@ -139,4 +142,7 @@
   .nav-brand {
     font-size: 18px;
   }
+
+  .nav-settings-button{padding:7px 9px;font-size:15px}
+  .nav-settings-label{display:none}
 }

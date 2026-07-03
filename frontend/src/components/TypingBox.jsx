@@ -29,6 +29,7 @@ const TypingBox = () => {
     reset,
     wpmHistory,
     timeLeft,
+    isTyping,
     testMode,
     setTestMode,
     modeValue,
@@ -91,7 +92,7 @@ const TypingBox = () => {
   return (
     <div className="rt-root fade-in">
       {/* ── MODE SELECTOR ── */}
-      <div className="rt-modes">
+      <div className={`rt-modes ${isTyping ? "typing-active" : ""}`}>
         <div className="mode-group">
           <span className="mode-label">word list</span>
           <div className="mode-pills">

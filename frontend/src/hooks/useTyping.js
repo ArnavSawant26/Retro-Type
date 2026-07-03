@@ -232,6 +232,7 @@ export const useTyping = () => {
     stats,
     wpmHistory,
     timeLeft,
+    isTyping: Boolean(startTime) && !done,
 
     // Mode controls
     testMode,
