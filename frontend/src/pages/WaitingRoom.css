@@ -1,0 +1,223 @@
+.rt-waiting-room {
+  width: 100%;
+}
+
+.waiting-room-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.waiting-room-header h1 {
+  font-family: var(--font-mono);
+  font-size: 26px;
+  color: var(--text-bright);
+  letter-spacing: 2px;
+}
+
+.room-host-subtitle {
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.room-code-display {
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.code-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+}
+
+.code-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.code-text {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--green);
+  letter-spacing: 2px;
+}
+
+.btn-copy {
+  padding: 2px 10px !important;
+  font-size: 11px !important;
+}
+
+.waiting-room-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 30px;
+}
+
+.waiting-room-main {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.room-settings-banner {
+  padding: 16px 20px;
+  background: var(--bg-card);
+}
+
+.room-settings-banner h3 {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-bright);
+  letter-spacing: 1.5px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+
+.settings-controls-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.control-box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.control-box label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.mode-pill-toggles {
+  display: flex;
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2px;
+}
+
+.toggle-pill {
+  flex-grow: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 4px 0;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.toggle-pill.active {
+  background: var(--border);
+  color: var(--green);
+}
+
+.settings-select {
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+  color: var(--text-bright);
+  padding: 6px 10px;
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.settings-select:focus {
+  outline: none;
+}
+
+.guest-settings-view {
+  display: flex;
+  gap: 24px;
+}
+
+.guest-setting-item {
+  display: flex;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.guest-label {
+  color: var(--text-dim);
+}
+
+.guest-val {
+  color: var(--green);
+  font-weight: bold;
+}
+
+.players-list-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.list-title-row h3 {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+}
+
+.players-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.lobby-actions-footer {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.btn-leave {
+  padding: 10px 24px !important;
+}
+
+.btn-start,
+.btn-ready {
+  flex-grow: 1;
+}
+
+.btn-ready-active {
+  background: var(--green) !important;
+  color: var(--bg-deep) !important;
+  border-color: var(--green) !important;
+  box-shadow: var(--green-glow);
+}
+
+.waiting-room-chat {
+  height: 100%;
+}
+
+@media (max-width: 992px) {
+  .waiting-room-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .players-grid {
+    grid-template-columns: 1fr;
+  }
+  .settings-controls-grid {
+    grid-template-columns: 1fr;
+  }
+}

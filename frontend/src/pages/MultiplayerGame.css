@@ -1,0 +1,39 @@
+.rt-multiplayer-game {
+  width: 100%;
+}
+
+.game-grid-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 30px;
+  align-items: start;
+}
+
+.game-main-area {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.game-crt {
+  position: relative;
+}
+
+.game-side-area {
+  position: sticky;
+  top: 20px;
+}
+
+/* Ensure the terminal doesn't overflow or act weird during races */
+.rt-terminal {
+  max-height: 240px !important;
+}
+
+@media (max-width: 992px) {
+  .game-grid-layout {
+    grid-template-columns: 1fr;
+  }
+  .game-side-area {
+    position: static;
+  }
+}

@@ -25,6 +25,9 @@ const Navbar = () => {
           <NavLink to="/" className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`} end>
             Home
           </NavLink>
+          <NavLink to="/multiplayer" className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}>
+            Multiplayer
+          </NavLink>
           <NavLink to="/leaderboard" className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}>
             Leaderboard
           </NavLink>

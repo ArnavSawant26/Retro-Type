@@ -2,7 +2,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from database import engine, Base
-from routers import auth, results, leaderboard, words
+from routers import auth, results, leaderboard, words, multiplayer, websocket as ws_router
 
 
 @asynccontextmanager
@@ -10,9 +10,9 @@ async def lifespan(app):
     # Create all tables on startup
     try:
         Base.metadata.create_all(bind=engine)
-        print("✓ Database tables created")
+        print("[Database] tables created successfully")
     except Exception as e:
-        print(f"⚠ Could not connect to database: {e}")
+        print(f"[Database] Could not connect to database: {e}")
         print("  Update backend/.env with your MySQL credentials")
     yield
 
@@ -38,8 +38,11 @@ app.include_router(auth.router)
 app.include_router(results.router)
 app.include_router(leaderboard.router)
 app.include_router(words.router)
+app.include_router(multiplayer.router)
+app.include_router(ws_router.router)
 
 
 @app.get("/")
 def root():
     return {"message": "Retro Type API is running", "docs": "/docs"}
+

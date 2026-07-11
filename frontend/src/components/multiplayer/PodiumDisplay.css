@@ -1,0 +1,128 @@
+.rt-podium-display {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 30px;
+  margin: 40px auto;
+  max-width: 600px;
+  height: 320px;
+}
+
+.podium-pillar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 140px;
+}
+
+.podium-player-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 12px;
+  animation: drop-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+.podium-player-card.winner {
+  animation-delay: 0.2s;
+}
+
+.crown-emoji {
+  font-size: 24px;
+  margin-bottom: 2px;
+  animation: float 2s ease-in-out infinite;
+}
+
+.podium-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 3px solid var(--border);
+  background: var(--bg-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--text-bright);
+  margin-bottom: 8px;
+}
+
+.podium-username {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--text-bright);
+  font-weight: 600;
+  text-align: center;
+}
+
+.podium-stat {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--green);
+  font-weight: bold;
+}
+
+.podium-player-card.empty {
+  color: var(--text-dim);
+  font-size: 20px;
+}
+
+.podium-pillar {
+  width: 100%;
+  background: linear-gradient(to bottom, var(--bg-card), var(--bg-deep));
+  border: 1px solid var(--border);
+  border-bottom: none;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 15px;
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
+}
+
+.pillar-number {
+  font-family: var(--font-mono);
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--text-dim);
+}
+
+/* Height configurations for podium */
+.first-place .podium-pillar {
+  height: 140px;
+  border-color: var(--amber-dim);
+}
+.first-place .pillar-number {
+  color: var(--amber);
+  text-shadow: 0 0 5px rgba(255, 182, 39, 0.4);
+}
+
+.second-place .podium-pillar {
+  height: 100px;
+}
+
+.third-place .podium-pillar {
+  height: 70px;
+}
+
+@keyframes drop-in {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}

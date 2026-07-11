@@ -1,0 +1,55 @@
+.rt-countdown-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(10, 10, 15, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.countdown-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.countdown-label {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: 3px;
+  color: var(--text-dim);
+  margin-bottom: 20px;
+}
+
+.countdown-number {
+  font-family: var(--font-mono);
+  font-size: 80px;
+  font-weight: bold;
+  color: var(--green);
+  text-shadow: var(--green-glow);
+}
+
+/* Pulse animation on each tick */
+.countdown-box.pulse .countdown-number {
+  animation: countdown-pulse 0.4s ease-out forwards;
+}
+
+@keyframes countdown-pulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.2;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

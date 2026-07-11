@@ -1,0 +1,109 @@
+.rt-player-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  padding: 12px 18px;
+  border-radius: var(--radius);
+  position: relative;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.rt-player-card:hover {
+  border-color: var(--player-color);
+  box-shadow: 0 0 10px calc(var(--player-color) + "33"); /* custom opacity suffix */
+}
+
+.rt-player-card.is-me {
+  border-color: var(--green);
+  box-shadow: var(--green-glow);
+}
+
+.player-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--bg-deep);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+.player-details {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.player-username {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color: var(--text-bright);
+  font-size: 15px;
+}
+
+.me-badge {
+  font-size: 11px;
+  color: var(--green);
+  font-weight: normal;
+  font-family: var(--font-mono);
+}
+
+.player-badges {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.host-badge {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  color: var(--amber);
+  background: rgba(255, 182, 39, 0.1);
+  padding: 1px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--amber-dim);
+}
+
+.ready-badge {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  padding: 1px 6px;
+  border-radius: 3px;
+}
+
+.ready-badge.ready {
+  color: var(--green);
+  background: rgba(57, 255, 20, 0.1);
+  border: 1px solid var(--green-dim);
+}
+
+.ready-badge.not-ready {
+  color: var(--text-dim);
+  background: rgba(96, 96, 120, 0.1);
+  border: 1px solid var(--border);
+}
+
+.kick-button {
+  background: transparent;
+  border: 1px solid var(--red-dim);
+  color: var(--red);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 4px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 1px;
+}
+
+.kick-button:hover {
+  background: var(--red);
+  color: var(--bg-deep);
+  border-color: var(--red);
+}
