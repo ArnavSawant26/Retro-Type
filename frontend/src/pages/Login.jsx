@@ -31,7 +31,8 @@ const Login = () => {
       login(data.access_token, user);
       navigate("/");
     } catch (err) {
-      const msg = err.response?.data?.detail || "Something went wrong";
+      const detail = err.response?.data?.detail;
+      const msg = Array.isArray(detail) ? detail[0]?.msg : detail || "Something went wrong";
       setError(msg);
     } finally {
       setLoading(false);
@@ -71,13 +72,17 @@ const Login = () => {
         {/* Form */}
         <form onSubmit={handleSubmit} className="login-form">
           <div className="form-group">
-            <label className="form-label">Username</label>
+            <label className="form-label" htmlFor="username">Username</label>
             <input
+              id="username"
               type="text"
               className="form-input"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
+              minLength={tab === "register" ? 3 : 1}
+              maxLength={50}
+              pattern={tab === "register" ? "[A-Za-z0-9_-]+" : undefined}
               autoComplete="username"
               placeholder="your_username"
             />
@@ -85,8 +90,9 @@ const Login = () => {
 
           {tab === "register" && (
             <div className="form-group">
-              <label className="form-label">Email</label>
+              <label className="form-label" htmlFor="email">Email</label>
               <input
+                id="email"
                 type="email"
                 className="form-input"
                 value={email}
@@ -99,19 +105,22 @@ const Login = () => {
           )}
 
           <div className="form-group">
-            <label className="form-label">Password</label>
+            <label className="form-label" htmlFor="password">Password</label>
             <input
+              id="password"
               type="password"
               className="form-input"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              minLength={tab === "register" ? 8 : 1}
+              maxLength={128}
               autoComplete={tab === "login" ? "current-password" : "new-password"}
               placeholder="••••••••"
             />
           </div>
 
-          {error && <div className="form-error">{error}</div>}
+          {error && <div className="form-error" role="alert">{error}</div>}
 
           <button type="submit" className="btn btn-primary login-submit" disabled={loading}>
             {loading ? "Loading..." : tab === "login" ? "LOGIN" : "REGISTER"}

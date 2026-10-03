@@ -1,11 +1,12 @@
 import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { useTyping } from "../hooks/useTyping";
 import { useAuth } from "../context/AuthContext";
 import { saveResult } from "../services/api";
 import WPMGraph from "./WPMGraph";
 import "./TypingBox.css";
 
-const WORD_OPTIONS = [10, 25, 50];
+const WORD_OPTIONS = [10, 25, 30, 50];
 const TIME_OPTIONS = [15, 30, 60, 120];
 const LIST_OPTIONS = [
   { value: "common100", label: "Common 100" },
@@ -248,7 +249,7 @@ const TypingBox = () => {
 
               {!user && (
                 <p className="rt-login-nudge">
-                  ⚡ <a href="/login">Login</a> to save your results & appear on the leaderboard
+                  ⚡ <Link to="/login">Login</Link> to save your results & appear on the leaderboard
                 </p>
               )}
               {user && <p className="rt-saved-msg">✓ Result saved</p>}

@@ -11,6 +11,7 @@ import JoinRoom from "./pages/JoinRoom";
 import WaitingRoom from "./pages/WaitingRoom";
 import MultiplayerGame from "./pages/MultiplayerGame";
 import MatchResults from "./pages/MatchResults";
+import NotFound from "./pages/NotFound";
 import { MultiplayerProvider } from "./context/MultiplayerContext";
 import "./index.css";
 
@@ -32,6 +33,7 @@ function App() {
             <Route path="/room/:roomId" element={<WaitingRoom />} />
             <Route path="/game/:roomId" element={<MultiplayerGame />} />
             <Route path="/results/:roomId" element={<MatchResults />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
       </div>

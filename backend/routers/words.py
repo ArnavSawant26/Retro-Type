@@ -1,4 +1,5 @@
 import random
+from typing import Literal
 from fastapi import APIRouter, Query
 
 router = APIRouter(prefix="/words", tags=["words"])
@@ -88,7 +89,7 @@ WORD_LISTS = {
 
 @router.get("/")
 def get_words(
-    mode: str = Query("common200", description="Word list: common100, common200, code, quotes"),
+    mode: Literal["common100", "common200", "code", "quotes"] = Query("common200", description="Word list: common100, common200, code, quotes"),
     count: int = Query(30, ge=5, le=200, description="Number of words to return"),
 ):
     if mode == "quotes":
@@ -96,6 +97,6 @@ def get_words(
         quote = random.choice(QUOTES)
         return {"mode": mode, "words": quote.split()}
 
-    word_list = WORD_LISTS.get(mode, COMMON_200)
+    word_list = WORD_LISTS[mode]
     words = [random.choice(word_list) for _ in range(count)]
     return {"mode": mode, "words": words}

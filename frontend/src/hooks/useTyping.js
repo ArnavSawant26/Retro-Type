@@ -112,11 +112,11 @@ export const useTyping = () => {
       }
 
       const key = e.key;
-      if (!startTime) setStartTime(Date.now());
 
       if (key === " ") {
         e.preventDefault();
         if (currentLetter === 0 && extraLetters.length === 0) return;
+        if (!startTime) setStartTime(Date.now());
 
         const word = words[currentWord];
         const ls = letterState[currentWord] || [];
@@ -180,6 +180,8 @@ export const useTyping = () => {
 
       const word = words[currentWord];
       if (!word) return;
+
+      if (!startTime) setStartTime(Date.now());
 
       if (currentLetter < word.length) {
         const expected = word[currentLetter];
